@@ -1,13 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import { ApiClient } from "../services/apiClient";
 import { IProduct } from "../entities/Product";
+import useProductQueryStore from "../store/ProductQueryStore";
 
 const apiClient = new ApiClient<IProduct[]>('/products');
+console.log(apiClient.endpoint)
 
 const useProduct = () => {
-  return useQuery({
-    queryKey: ['products'],
-    queryFn: apiClient.getAll,
+  const {productQuery} = useProductQueryStore();
+
+  return useQuery<IProduct[]>({
+    queryKey: ['products', productQuery.category],
+    queryFn: () => apiClient.getAll({
+      params: {
+        category: productQuery.category
+      }
+    }),
     staleTime: 10000
   })
 }

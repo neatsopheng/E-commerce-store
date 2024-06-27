@@ -10,7 +10,7 @@ const CartView = ({ setShowCartView, showCart }: Prop) => {
   const [cartCount, setCartCount] = useState(0);
   return (
     <div
-      className={`absolute right-0  md:w-[45%] lg:w-[40%] xl:w-[30%] h-auto bg-white py-4 px-5 ${
+      className={`absolute right-0 z-20  md:w-[45%] lg:w-[40%] xl:w-[30%] h-auto bg-white py-4 px-5 ${
         showCart ? "md:block opacity-100" : "hidden opacity-0"
       }  top-0 transition-all ease-in duration-75`}
     >
