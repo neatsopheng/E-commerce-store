@@ -8,8 +8,14 @@ import { BrowserRouter, RouterProvider } from 'react-router-dom'
 import { MyRouter } from './routes.tsx'
 
 
-const queryClient = new QueryClient()
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false, // Disable refetch on window focus
+      staleTime: 5 * 60 * 10000,    // 50 minutes stale time
+    },
+  },
+});ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={MyRouter}/>

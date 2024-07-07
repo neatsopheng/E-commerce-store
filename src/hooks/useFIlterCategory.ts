@@ -5,7 +5,7 @@ import ms from "ms";
 
 
 const useFIlterCategory = (targetCategory: string) => {
-    const apiClient = new ApiClient<IProduct>(`/products/category/${targetCategory}`)
+    const apiClient = new ApiClient<IProduct[]>(`/products/category/${targetCategory}`)
   return useQuery({
     queryKey: [targetCategory],
     queryFn: apiClient.getAll,

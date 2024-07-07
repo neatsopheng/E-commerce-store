@@ -10,3 +10,12 @@
 .navbar {
     @apply px-24 mt-10;
 }
+.main-content {
+    @apply md:w-[75%] w-[100%];
+}
+.form-input {
+    @apply w-full h-12 rounded-md border-2 px-5;
+}
+.square {
+    @apply w-60 h-28 p-5 border-2;
+}

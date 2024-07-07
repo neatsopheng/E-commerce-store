@@ -7,7 +7,7 @@ const Sidebar = () => {
   console.log(productQuery.category)
 
   return (
-    <div className="md:w-64 md:fixed md:left-0 md:top-0 hidden md:block mt-20  bg-slate-500 h-screen p-5 text-white overflow-y-auto">
+    <div className="md:w-64 md:fixed md:left-0 md:top-0 hidden md:block mt-20  bg-slate-500 h-screen m-5 p-5 text-white rounded-xl overflow-y-scroll">
       <p className="font-bold text-3xl mb-8">Category</p>
 
       <ul>
@@ -23,6 +23,16 @@ const Sidebar = () => {
         ))}
       </ul>
 
+      <p className="font-bold text-3xl my-8">Filter by</p>
+      <p className="font-bold text-3xl my-8">Filter by</p>
+      <p className="font-bold text-3xl my-8">Filter by</p>
+      <p className="font-bold text-3xl my-8">Filter by</p>
+      <p className="font-bold text-3xl my-8">Filter by</p>
+      <p className="font-bold text-3xl my-8">Filter by</p>
+      <p className="font-bold text-3xl my-8">Filter by</p>
+      <p className="font-bold text-3xl my-8">Filter by</p>
+      <p className="font-bold text-3xl my-8">Filter by</p>
+      <p className="font-bold text-3xl my-8">Filter by</p>
       <p className="font-bold text-3xl my-8">Filter by</p>
     </div>
   );

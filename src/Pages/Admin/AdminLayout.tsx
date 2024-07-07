@@ -1,16 +1,23 @@
-import React from 'react'
-import AdminPage from './AdminPage'
-import AdminSidebar from './AdminSidebar'
-import AdminNavbar from './AdminNavbar'
+import React from "react";
+import AdminPage from "./AdminPage";
+import AdminSidebar from "./Sidebar/AdminSidebar";
+import AdminNavbar from "./AdminNavbar";
+import { Outlet } from "react-router-dom";
+import BackNav from "../../shared/BackNav";
 
 const AdminLayout = () => {
   return (
     <div>
-        <AdminNavbar />
+      <AdminNavbar />
+      <div className="flex">
         <AdminSidebar />
-        <AdminPage />
-    </div>
-  )
-}
+        <div className="bg-[#2c405c] w-[100%]">
 
-export default AdminLayout
+          <Outlet />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AdminLayout;

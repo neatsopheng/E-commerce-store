@@ -15,18 +15,23 @@ const ProductGrid = () => {
 
   if (isLoading) return <p>Loading</p>;
   if (error) return <p>Error fetching product</p>;
+  if (!data) return <p>No Product available</p>
 
   const handleAddProduct = (pID: number) => {
     // pass PID to cart store
   }
 
   return (
-    <div className="md:w-[75%] md:ml-[16rem] w-[100%]  flex-1 bg-white p-4 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 justify-items-center">
+    <div className=" w-[100%]  flex-1 bg-white p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 justify-items-center"
+      
+    >
       {data?.map((item) => (
         <div key={item.id}>
-          <div className="w-56 md:w-60 h-auto  bg-gray-300 rounded-xl relative">
-            <div className="w-full md:w-60 h-64 bg-white  border-2 relative flex items-center justify-center">
-              <div className="absolute flex justify-between w-full top-2 px-3">
+          <div className="w-72 h-auto  bg-gray-300 rounded-xl relative">
+            <div className="w-full  h-64 bg-white  border-2 relative flex items-center justify-center overflow-hidden">
+
+            {/* ==================Top Part==================================== */}
+              <div className="absolute flex justify-between w-full top-2 px-3 ">
                 <button className="rounded-full">
                   <IoIosAddCircleOutline fontSize={"32px"} color="red" />
                 </button>
@@ -36,7 +41,7 @@ const ProductGrid = () => {
               </div>
               <img
                 src={item.image}
-                className="w-32 h-auto hover:scale-105 transition duration-300"
+                className="w-44 h-auto hover:scale-105 transition duration-300"
               />
             </div>
 

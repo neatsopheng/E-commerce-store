@@ -24,3 +24,4 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export default useProductQueryStore;
+//"/products?_sort=id&_order=desc"
