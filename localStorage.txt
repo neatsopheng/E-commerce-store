@@ -1,0 +1,24 @@
+// const updateLocalStorage = JSON.stringify(localStorage.setItem('car', "f"))
+
+  // const handleAddCount = (id: number) => {
+  //   console.log("clicked");
+  //   const newCart = CartLocalStorage.map((c) => {
+  //     if (c.id === id) {
+  //       const newCount = c.count + 1;
+  //       return { ...c, count: newCount, totalPrice: c.price * newCount };
+  //     }
+  //     return c;
+  //   });
+
+  //   localStorage.setItem("cusCart", JSON.stringify(newCart) || "[]");
+  // };
+  // const handleMinusCount = (id: number) => {
+  //   const newCart = CartLocalStorage.map((c) => {
+  //     if (c.id === id) {
+  //       const newCount = c.count - 1;
+  //       return { ...c, count: newCount, totalPrice: c.price * newCount };
+  //     }
+  //     return c;
+  //   });
+  //   localStorage.setItem("cusCart", JSON.stringify(newCart) || "[]");
+  // };
