@@ -2,7 +2,7 @@ import "./App.css";
 import Footer from "./Pages/Footer";
 import ProductGrid from "./Pages/ProductGrid";
 import Sidebar from "./Pages/Sidebar";
-import NavbarOne from "./Navbar/NavbarOne";
+import NavbarOne from "./Pages/Navbar/NavbarOne";
 
 function App() {
   return (

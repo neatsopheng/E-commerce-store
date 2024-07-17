@@ -11,7 +11,11 @@ const AdminSidebar = () => {
   ];
 
   return (
-    <div className="md:w-64 lg:w-[20%] hidden md:block bg-[#415875]    h-screen p-5 text-white overflow-y-auto">
+    <>
+    <div>
+      
+    </div>
+    <div className="md:w-64 lg:w-[20%] hidden lg:block bg-[#415875] mt-10 mx-5 rounded-2xl sticky top-20 h-full p-5 text-white overflow-y-auto">
       <ul className="flex flex-col gap-4">
         {sidebarItem.map((i) => (
           <Link
@@ -24,6 +28,7 @@ const AdminSidebar = () => {
         ))}
       </ul>
     </div>
+    </>
   );
 };
 

@@ -11,7 +11,7 @@ const AdminLayout = () => {
       <AdminNavbar />
       <div className="flex">
         <AdminSidebar />
-        <div className="bg-[#2c405c] w-[100%]">
+        <div className="bg-[#2c405c] w-full">
 
           <Outlet />
         </div>

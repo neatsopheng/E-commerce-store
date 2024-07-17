@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const AdminPage = () => {
   return (
-    <div className='main-content flex-1 bg-white p-4 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 justify-items-center'>Welcome Mr Sopheng</div>
-  )
-}
+    <div className="main-content bg-gray-200 w-full p-5 m-5 mx-auto rounded-xl ">
+      Welcome Mr Sopheng
+    </div>
+  );
+};
 
-export default AdminPage
+export default AdminPage;

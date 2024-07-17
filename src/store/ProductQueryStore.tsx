@@ -1,10 +1,13 @@
 import { mountStoreDevtool } from "simple-zustand-devtools";
 import { create } from "zustand";
 
+// model
 interface Productquery {
   category?: string;
   search?: string;
 }
+
+// store
 interface ProductQueryStore {
   productQuery: Productquery;
   setCategory: (category: string) => void;

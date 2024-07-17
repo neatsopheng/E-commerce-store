@@ -15,7 +15,8 @@ const queryClient = new QueryClient({
       staleTime: 5 * 60 * 10000,    // 50 minutes stale time
     },
   },
-});ReactDOM.createRoot(document.getElementById('root')!).render(
+});
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={MyRouter}/>
