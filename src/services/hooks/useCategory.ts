@@ -3,7 +3,8 @@ import { ApiClient } from "../apiClient";
 import { IProduct } from "../../entities/Product";
 import { TCategory } from "../../entities/Category";
 
-const apiClient = new ApiClient<TCategory>('/products/categories');
+// const apiClient = new ApiClient<TCategory>('/products/categories');
+const apiClient = new ApiClient<TCategory>('/categories');
 
 const useCategories = () => {
   return useQuery({

@@ -8,7 +8,7 @@ const CategoryFilter = () => {
   const { setCategory, productQuery, setProductQueryNull } =
     useProductQueryStore();
   if (isLoading) return null;
-  if (error) throw error;
+  if (error) return null;
   console.log(productQuery.category);
 
   return (
