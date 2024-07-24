@@ -7,29 +7,32 @@ import useCartQueryStore from "../store/AddToCartStore";
 import LoadingPage from "./LoadingPage";
 import Homepage from "./HomePage";
 import { toast, Toaster } from "sonner";
+import { useReadProduct } from "../lib/supabase/CRUD";
 
 const ProductGrid = () => {
-  const { data, isLoading, error } = useProduct();
-  const addProduct = useCartQueryStore((s) => s.addProduct);
-  const CartItemQuery = useCartQueryStore((s) => s.CartItemQuery);
+  // const { data, isLoading, error } = useProduct();
+  // const addProduct = useCartQueryStore((s) => s.addProduct);
+  // const CartItemQuery = useCartQueryStore((s) => s.CartItemQuery);
+  const {data: readProduct, error, isLoading} = useReadProduct();
+  console.log(readProduct, error)
 
-  const [isAdded, setIsAdded] = useState(false);
+  // const [isAdded, setIsAdded] = useState(false);
 
-  const handleAddToCart = (newItem: ICart) => {
-    const existItem = CartItemQuery.find((i) => newItem.id === i.id);
-    if (!existItem) {
-      addProduct(newItem);
+  // const handleAddToCart = (newItem: ICart) => {
+  //   const existItem = CartItemQuery.find((i) => newItem.id === i.id);
+  //   if (!existItem) {
+  //     addProduct(newItem);
 
-      setIsAdded(true);
-      toast.success("Added");
-    } else {
-      toast.error("Item is in the cart");
-    }
-  };
+  //     setIsAdded(true);
+  //     toast.success("Added");
+  //   } else {
+  //     toast.error("Item is in the cart");
+  //   }
+  // };
 
   if (isLoading) return <LoadingPage />;
   if (error) return <p>Error fetching product</p>;
-  if (!data) return <p>No Product available</p>;
+  // if (!data) return <p>No Product available</p>;
 
   return (
     <>
@@ -38,8 +41,8 @@ const ProductGrid = () => {
       <div>
         <p className="my-2 font-bold mx-5 text-2xl">POPULAR ITEM</p>
         <div className=" w-[100%]  flex-1 bg-white p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 justify-items-center">
-          {data?.map((item) => (
-            <div key={item.id}>
+          {readProduct?.data?.map((item) => (
+            <div key={item.pid}>
               <div className="w-72  h-auto  bg-gray-300 rounded-xl relative">
                 <div className="w-full  h-72 bg-white  border-2 relative flex items-center justify-center overflow-hidden">
                   {/* ==================Top Part==================================== */}
@@ -60,12 +63,12 @@ const ProductGrid = () => {
                 {/* ===================    description     ============================================================================= */}
                 <div className="p-1 h-52 text-center">
                   <a
-                    href={`products/${item.id}`}
+                    href={`products/${item.pid}`}
                     className="text-sm md:text-md font-semibold"
                   >
                     <p>
-                      {item.title.slice(0, 50)}
-                      <span>{item.title.length > 50 ? "....." : ""}</span>
+                      {item.pname.slice(0, 50)}
+                      <span>{item.pname.length > 50 ? "....." : ""}</span>
                     </p>
                   </a>
                   <p className="text-gray-500">{item.category}</p>
@@ -75,20 +78,20 @@ const ProductGrid = () => {
                   <div className="flex flex-col items-center gap-2">
                     <button
                       className="border w-fit py-1 px-7 text-lg bg-yellow-500 font-semibold"
-                      onClick={() =>
-                        handleAddToCart({
-                          id: item.id,
-                          title: item.title,
-                          price: item.price,
-                          totalPrice: item.price,
-                          count: 1,
-                          imgUrl: item.image,
-                        })
-                      }
+                      // onClick={() =>
+                      //   handleAddToCart({
+                      //     id: item.id,
+                      //     title: item.title,
+                      //     price: item.price,
+                      //     totalPrice: item.price,
+                      //     count: 1,
+                      //     imgUrl: item.image,
+                      //   })
+                      // }
                     >
                       Add to cart
                     </button>
-                    <a href={`products/${item.id}`}>
+                    <a href={`products/${item.pid}`}>
                       <button className="border w-fit py-1 px-7 text-lg bg-yellow-600 font-semibold">
                         View Detail
                       </button>

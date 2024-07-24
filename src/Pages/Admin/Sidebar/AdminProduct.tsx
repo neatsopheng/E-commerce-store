@@ -1,38 +1,46 @@
 import useProduct from "../../../services/hooks/useProduct";
 import { CiEdit } from "react-icons/ci";
 import { FaTrash } from "react-icons/fa";
-import useDeleteProduct from "../../../services/hooks/useDeleteProduct";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LuEye } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import supabase from "../../../lib/supabase/config";
+import { useEffect, useState } from "react";
+import { IProduct } from "../../../entities/Product";
+import {  useReadProduct, useDeleteProduct  } from "../../../lib/supabase/CRUD";
 
 const AdminProduct = () => {
+  
   const { data } = useProduct();
-  const { mutateAsync: deleteProduct } = useDeleteProduct();
-  // const {mutateAsync: updateProduct} = useUpdateProduct();
-  console.log(data);
+  // const { mutateAsync: deleteProduct } = useDeleteProduct();
+  const {data: readProduct, error: errorProduct, isLoading} = useReadProduct();
+  const {mutateAsync: deleteProduct, error: errorDelete} = useDeleteProduct();
 
-  const handleDelete = async (id: number | string) => {
-    const confirm = window.confirm("Deleting Product with ID: " + id);
+  console.log(readProduct);
 
-    if (confirm) {
-      await deleteProduct(id);
-    }
-  };
+  // const handleDelete = async (id: number | string) => {
+  //   const confirm = window.confirm("Deleting readProduct with ID: " + id);
 
-  const TotalProduct = data
-    ?.reduce((acc, cur) => {
-      return acc + cur.price;
-    }, 0)
-    .toFixed(2);
+  //   if (confirm) {
+  //     await deleteProduct(id);
+  //   }
+  // };
 
+  const TotalProduct = readProduct?.data?.
+    reduce((acc, cur) => {
+      const price = parseFloat(cur.price)
+      return acc + price;
+    }, 0).toFixed(2)
+    
+
+    if (errorProduct) return <p>error</p>
   return (
     <>
       <div className="w-full block my-0 mx-auto p-10">
         <div className="bg-gray-800 mb-5 text-white w-[100%] whitespace-nowrap py-2 flex md:flex-row flex-col items-center justify-between px-5">
           <p className="font-semibold flex gap-2 items-center">
-            <LuEye /> Viewing Product list
+            <LuEye /> Viewing readProduct list
           </p>
           <div className="flex gap-5">
             <Link to={"add_product"}>
@@ -51,6 +59,11 @@ const AdminProduct = () => {
           </div>
         </div>
         <div className="w-full overflow-auto">
+          {
+            isLoading ? 
+          <p className="text-center w-full text-white text-4xl animate-pulse p-5">Loading...</p>
+            : 
+          
           <table className="w-full bg-gray-100 text-sm md:text-md">
             <thead>
               <tr>
@@ -62,18 +75,20 @@ const AdminProduct = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.map((item, index) => (
+              
+              {/* data.map */}
+              {readProduct?.data?.map((item: any, index: number) => (
                 <tr
-                  key={item.id}
+                  key={item.pid}
                   className={`${
                     index % 2 === 0 ? "bg-gray-100" : "bg-white"
                   } hover:bg-green-300`}
                 >
                   <td className="py-1 px-3 md:py-3 md:px-6 border-2 text-red-700">
-                    {item.id}
+                    {item.pid}
                   </td>
                   <td className="py-1 px-3 md:py-3 md:px-6 border-2">
-                    {item.title}
+                    {item.pname}
                   </td>
                   <td className="py-1 px-3 md:py-3 md:px-6 border-2">
                     {item.price}
@@ -82,7 +97,7 @@ const AdminProduct = () => {
                     {item.category}
                   </td>
                   <td className="py-1 px-3 md:py-3 md:px-6 border-2">
-                    <Link to={`update_product/${item.id}`}>
+                    <Link to={`update_product/${item.pid}`}>
                       <button className=" text-yellow-500 text-2xl hover:text-yellow-600">
                         <CiEdit />
                       </button>
@@ -90,7 +105,10 @@ const AdminProduct = () => {
 
                     <button
                       className=" text-red-500 text-xl hover:text-red-600"
-                      onClick={async () => await handleDelete(item.id)}
+                      onClick={async () => {
+                        await deleteProduct(item.pid);
+                        toast.success('Deleted Successful id: '+ item.pid)
+                      }}
                     >
                       <FaTrash />
                     </button>
@@ -105,6 +123,7 @@ const AdminProduct = () => {
               </tr>
             </tbody>
           </table>
+        }
         </div>
 
         <ToastContainer />
