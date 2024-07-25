@@ -5,15 +5,16 @@ import BackNav from "../../shared/BackNav";
 import { ICart } from "../../entities/Cart";
 import { toast, Toaster } from "sonner";
 import useCartQueryStore from "../../store/AddToCartStore";
-import { useReadProduct } from "../../lib/supabase/CRUD";
+import { useReadSingleProduct } from "../../lib/supabase/CRUD";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const { data, isLoading } = useReadProduct();
-  const PDetail = data?.data?.find((d) => d.pid === parseInt(id!));
-  const CartItemQuery = useCartQueryStore((s) => s.CartItemQuery);
+  const {data: DetailProduct, isLoading} = useReadSingleProduct(parseInt(id || ''));
 
+  
+  const CartItemQuery = useCartQueryStore((s) => s.CartItemQuery);
   const addProduct = useCartQueryStore((s) => s.addProduct);
+  console.log(DetailProduct?.data)
 
 
   const handleAddToCart = (newItem: ICart) => {
@@ -26,6 +27,7 @@ const ProductDetailPage = () => {
       toast.error("Item is in the cart");
     }
   };
+  console.log(id)
 
   // const { data: categoryData, error: errorCategory } = useFIlterCategory(
   //   PDetail?.category!
@@ -47,16 +49,16 @@ const ProductDetailPage = () => {
             <BackNav />
             <div className="flex flex-col md:flex-row items-center md:items-start gap-10 ">
               <img
-                src={PDetail?.image}
+                src={DetailProduct?.data.image}
                 className="w-[30%] md:w-[25%] lg:w-[20%] xl:w-[15%] h-auto p-5"
               />
               <div>
-                <p className="font-bold text-2xl">US ${PDetail?.price}</p>
+                <p className="font-bold text-2xl">US ${DetailProduct?.data.price}</p>
                 <p className="text-whtie text-xl font-medium">
-                  {PDetail?.title}
+                  {DetailProduct?.data.pname}
                 </p>
-                <p className="mt-5">{PDetail?.description}</p>
-                <p className="mt-5">{PDetail?.category}</p>
+                <p className="mt-5">{DetailProduct?.data.description}</p>
+                <p className="mt-5">{DetailProduct?.data.category}</p>
                 <div className="mt-5">
                   <p className="font-semibold">Quantity</p>
                   {/* <div className="flex items-center justify-start  gap-2">
@@ -85,22 +87,22 @@ const ProductDetailPage = () => {
                     className="mt-5 border py-2 px-5 bg-yellow-600 text-white font-bold"
                     onClick={() =>
                       handleAddToCart({
-                        id: PDetail?.pid!,
-                        title: PDetail?.pname!,
-                        price: parseFloat(PDetail?.price!),
-                        totalPrice: parseFloat(PDetail?.price!),
+                        id: DetailProduct?.data.pid,
+                        title: DetailProduct?.data.pname,
+                        price: parseFloat(DetailProduct?.data.price),
+                        totalPrice: parseFloat(DetailProduct?.data.price),
                         count: 1,
-                        imgUrl: PDetail?.image!,
+                        imgUrl: DetailProduct?.data.image,
                       })
                     }
                   >
                     Add to cart
                   </button>
                 </div>
-                {PDetail?.rating && (
+                {DetailProduct?.data.rating && (
                   <p>
-                    Rating {PDetail?.rating && PDetail.rating.rate} by{" "}
-                    {PDetail?.rating && PDetail.rating.count} people
+                    Rating {DetailProduct?.data.rating && DetailProduct?.data.rating.rate} by{" "}
+                    {DetailProduct?.data.rating && DetailProduct?.data.rating.count} people
                   </p>
                 )}
               </div>

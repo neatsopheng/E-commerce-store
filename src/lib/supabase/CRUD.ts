@@ -12,6 +12,16 @@ export const useReadProduct = () => useQuery({
     queryFn: fetchProduct,
     staleTime: 10000
 })
+// ==== Read Single Specific Product
+const fetchSingleProduct = async (productId: number) => {
+    const response = await supabase.from('tbproduct').select().eq('pid', productId).single();
+    return response;
+}
+export const useReadSingleProduct = (productId: number) => useQuery({
+    queryKey: ['products'],
+    queryFn: () => fetchSingleProduct(productId),
+    staleTime: 10000
+})
 
 // ========= Fetch Category
 const fetchCate = async () => {
