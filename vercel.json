@@ -1,15 +1,5 @@
 {
     "routes": [
-      { "src": "/products/:id", "dest": "/" },
-      { "src": "/products", "dest": "/" },
-      { "src": "/", "dest": "/" },
-      { "src": "/admin", "dest": "/" },
-      { "src": "/admin/dashboard", "dest": "/" },
-      { "src": "/admin/admin_categories", "dest": "/" },
-      { "src": "/admin/customer", "dest": "/" },
-      { "src": "/admin/admin_products", "dest": "/" },
-      { "src": "/admin/admin_products/add_product", "dest": "/" },
-      { "src": "/admin/admin_products/update_product/:id", "dest": "/" },
       { "src": "/(.*)", "dest": "/" }
     ]
   }
