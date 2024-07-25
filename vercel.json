@@ -1,16 +1,16 @@
 {
     "routes": [
-      { "src": "/products/:id", "dest": "/products/:id" },
-      { "src": "/products", "dest": "/products" },
+      { "src": "/products/:id", "dest": "/" },
+      { "src": "/products", "dest": "/" },
       { "src": "/", "dest": "/" },
-      { "src": "/admin", "dest": "/admin" },
-      { "src": "/admin/dashboard", "dest": "/admin/dashboard" },
-      { "src": "/admin/admin_categories", "dest": "/admin/admin_categories" },
-      { "src": "/admin/customer", "dest": "/admin/customer" },
-      { "src": "/admin/admin_products", "dest": "/admin/admin_products" },
-      { "src": "/admin/admin_products/add_product", "dest": "/admin/admin_products/add_product" },
-      { "src": "/admin/admin_products/update_product/:id", "dest": "/admin/admin_products/update_product/:id" },
-      { "src": "/(.*)", "dest": "/index.html" }
+      { "src": "/admin", "dest": "/" },
+      { "src": "/admin/dashboard", "dest": "/" },
+      { "src": "/admin/admin_categories", "dest": "/" },
+      { "src": "/admin/customer", "dest": "/" },
+      { "src": "/admin/admin_products", "dest": "/" },
+      { "src": "/admin/admin_products/add_product", "dest": "/" },
+      { "src": "/admin/admin_products/update_product/:id", "dest": "/" },
+      { "src": "/(.*)", "dest": "/" }
     ]
   }
   
