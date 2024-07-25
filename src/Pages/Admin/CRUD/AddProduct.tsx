@@ -1,38 +1,36 @@
 import { useState } from "react";
-import useAddProduct from "../../../services/hooks/useAddProduct";
-import { IProduct } from "../../../entities/Product";
+import { INewProduct } from "../../../entities/Product";
 import { useNavigate } from "react-router-dom";
-import useProduct from "../../../services/hooks/useProduct";
+import { usePostProduct } from "../../../lib/supabase/CRUD";
 
 const AddProduct = () => {
-  const { data } = useProduct();
-  const [formValue, setFormValue] = useState<IProduct>({
-    id: 0,
-    title: "",
+  const [formValue, setFormValue] = useState<INewProduct>({
+    pname: "",
     price: 0,
     description: "",
     category: "",
     image: "",
   });
-  const { mutateAsync: CreateProduct, isPending } = useAddProduct();
+  const { mutateAsync: postProduct, isPending } = usePostProduct();
   const navigate = useNavigate();
-  console.log(formValue);
-  console.log(data?.length);
-  const handleSubmit = async () => {
-    setFormValue({ ...formValue, id: data?.length! + 1 });
-    const newProduct = await CreateProduct(formValue);
+
+
+  const handlePostProduct = async () => {
+    setFormValue({ ...formValue});
+    const newProduct = await postProduct(formValue);
     if (newProduct) {
       console.log("Added");
       navigate("/");
     }
-
     if (!newProduct) console.log("product add failed");
-  };
 
+  }
   if (isPending) return <p>Uploading...</p>;
+
+  
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handlePostProduct}
       className="w-[90%] h-screen mx-10 my-5 px-10 py-5   flex flex-col gap-5 border-2 bg-gray-200 rounded-xl "
     >
       <h3 className="font-bold text-2xl">Adding Product</h3>
@@ -45,7 +43,7 @@ const AddProduct = () => {
           className="form-input"
           required
           onBlur={(e) => {
-            setFormValue({ ...formValue, title: e.target.value });
+            setFormValue({ ...formValue, pname: e.target.value });
           }}
         />
       </div>

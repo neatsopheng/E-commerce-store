@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-800 text-white py-6">
+    <footer className="bg-gray-800 text-white py-6 sticky">
       <div className="container  mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <span className="text-lg font-semibold">MyCompany</span>
@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
           </nav>
         </div>
         <div>
-          <p className="text-sm">&copy; 2024 MyCompany. All rights reserved.</p>
+          <p className="text-sm">&copy; 2024 Supermarket. All rights reserved.</p>
         </div>
       </div>
     </footer>

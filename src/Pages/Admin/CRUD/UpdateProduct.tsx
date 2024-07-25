@@ -1,42 +1,39 @@
 import { useState } from "react";
-import { IProduct } from "../../../entities/Product";
-import { useParams } from "react-router-dom";
-import useUpdateProduct from "../../../services/hooks/useUpdateProduct";
-// {
-//   "id": 27,
-//   "title": " Jacket Winter Coats",
-//   "price": 76.99,
-//   "description": "Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates",
-//   "category": "women's clothing",
-//   "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
-//   "rating": {
-//     "rate": 2.6,
-//     "count": 235
-//   }
-// }
+import { INewProduct} from "../../../entities/Product";
+import { useNavigate, useParams } from "react-router-dom";
+import { useUpdateProduct } from "../../../lib/supabase/CRUD";
+import { toast } from "sonner";
 
 const UpdateProduct = () => {
-  const [formValue, setFormValue] = useState<IProduct>({
-    id: 0,
-    title: "",
+  const [formValue, setFormValue] = useState<INewProduct>({
+    pname: "",
     price: 0,
     description: "",
     category: "",
     image: "",
   });
   const { id } = useParams();
-  const { mutateAsync: UpdateProduct, isPending } = useUpdateProduct(
-    parseInt(id || "")
-  );
-
+  // const { mutateAsync: UpdateProduct, isPending } = useUpdateProduct(
+  //   parseInt(id || "")
+  // );
+  const {mutateAsync: updateProduct, isPending} = useUpdateProduct(parseInt(id || ""));
+  const navigate = useNavigate();
   const handleUpdate = async () => {
-    await UpdateProduct(formValue);
-  };
+    setFormValue({ ...formValue});
+    const newProduct = await updateProduct(formValue);
+    if (newProduct) {
+      console.log("Added");
+      navigate("/");
+    }
+    if (!newProduct) console.log("product add failed");
+
+  }
+  if (isPending) return <p>Uploading...</p>;
 
   if (isPending) return <p>Uploading...</p>;
   return (
     <form
-      onSubmit={async () => await handleUpdate()}
+      onSubmit={handleUpdate}
       className="w-[90%] h-screen bg-gray-300 rounded-xl mx-10 my-5 px-10 py-5 flex flex-col gap-5 border-2 "
     >
       <h3 className="font-bold text-2xl">Updating Product ID: {id}</h3>
@@ -49,7 +46,7 @@ const UpdateProduct = () => {
           className="form-input"
           required
           onBlur={(e) => {
-            setFormValue({ ...formValue, title: e.target.value });
+            setFormValue({ ...formValue, pname: e.target.value });
           }}
         />
       </div>

@@ -1,15 +1,12 @@
-import { useState } from "react";
-import useCategories from "../../services/hooks/useCategory";
 import useProductQueryStore from "../../store/ProductQueryStore";
+import { useReadCate } from "../../lib/supabase/CRUD";
 
 const CategoryFilter = () => {
-  const { data, isLoading, error } = useCategories();
-  const [selectedValue, setSelectedValue] = useState("All Category");
-  const { setCategory, productQuery, setProductQueryNull } =
-    useProductQueryStore();
+  const {data: category, isLoading, error} = useReadCate();
+  const { setCategory } = useProductQueryStore();
   if (isLoading) return null;
   if (error) return null;
-  console.log(productQuery.category);
+  console.log(category);
 
   return (
     <select
@@ -23,9 +20,9 @@ const CategoryFilter = () => {
       }
     >
       <option value="All_Category">All Category</option>
-      {data?.map((c) => (
-        <option value={c} key={c}>
-          {c}
+      {category?.map((c) => (
+        <option value={c.category} key={c.id}>
+          {c.category}
         </option>
       ))}
     </select>

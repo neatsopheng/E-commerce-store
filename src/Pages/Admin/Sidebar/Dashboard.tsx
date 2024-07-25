@@ -1,38 +1,45 @@
-import { FaShoppingBasket } from "react-icons/fa";
+import { useState } from "react";
+import {  MdOutlineCategory } from "react-icons/md";
+import { AiFillProduct, AiOutlineDollar  } from "react-icons/ai";
+import { IoMdPeople } from "react-icons/io";
+import { useReadProduct } from "../../../lib/supabase/CRUD";
 
 const Dashboard = () => {
+    const [hoverIndex, setHoverIndex] = useState(-1)
+    const { data: readProduct} = useReadProduct();
+
+      const TotalProduct = readProduct?.data
+        ?.reduce((acc, cur) => {
+          const price = parseFloat(cur.price);
+          return acc + price;
+        }, 0)
+        .toFixed(2);
+  const dashboardItem = [
+    { title: "Product", total: 10, icon: <AiFillProduct />},
+    { title: "Category", total: 4, icon: <MdOutlineCategory /> },
+    { title: "Sum Price", total: "$" + TotalProduct, icon: <AiOutlineDollar />},
+    { title: "Customer", total: "100", icon: <IoMdPeople />}
+  ];
   return (
-    <div className="bg-[#2c405c] w-auto p-5 text-white">
-        <h3 className="text-2xl font-bold">Dashboard</h3>
-        
-        <div className="flex flex-row gap-5 flex-wrap justify-center">
-            <div className="square bg-indigo-500">
-                <div className="flex justify-between items-center text-2xl">
-                    <h4>Products</h4>
-                    
-                    <FaShoppingBasket />
+    <div className=" h-screen w-auto p-5 text-white">
+      <h3 className="text-2xl mb-5 font-bold text-whtie">Dashboard</h3>
 
-                </div>
-                <p>256</p>
+      <div className="flex flex-row gap-5 flex-wrap justify-center">
+        {dashboardItem.map((i, index) => (
+          <div className={`flex items-center py-5 px-2 justify-between w-60 border-t border-green-500 backdrop-blur-lg shadow-xl`}
+          onMouseEnter={() => setHoverIndex(index) }
+          onMouseLeave={() => setHoverIndex(-1)}
+          >
+            <div>
+              <p className="text-md font-semibold">{i.title}</p>
+              <p className="text-lg">{i.total}</p>
             </div>
-            <div className="square bg-orange-500">
-                <h4>Products</h4>
-                <FaShoppingBasket />
-                <p>256</p>
-            </div>
-            <div className="square bg-green-700">
-                <h4>Products</h4>
-                <FaShoppingBasket />
-                <p>256</p>
-            </div>
-            <div className="square bg-red-700">
-                <h4>Products</h4>
-                <FaShoppingBasket />
-                <p>256</p>
-            </div>
-        </div>
+            <div className={`text-4xl opacity-25 ${hoverIndex === index && "opacity-90"}`}>{i.icon}</div>
+          </div>
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

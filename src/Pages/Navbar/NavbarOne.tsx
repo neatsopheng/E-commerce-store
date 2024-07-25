@@ -18,8 +18,11 @@ const NavbarOne = () => {
       className={` md:px-20 sticky top-0 md:py-5 h-20 px-5 py-2 mt-2 w-full z-10 flex gap-5 items-center justify-between border-b-8 bg-white transition duration-[0.6s] `}
       onScroll={() => setScroll(!scroll)}
     >
-      <h1 className="font-bold text-3xl md:text-4xl  whitespace-nowrap text-green-600 hover:text-green-300 transition duration-300">
-        <Link to={"/"}>PStore</Link>
+      <h1 className="font-bold text-2xl md:text-2xl lg:text-4xl  whitespace-nowrap text-green-600 hover:brightness-150 transition duration-300">
+        <Link to={"/"}>
+          <span className="text-red-500 underline decoration-green-500 border-4 border-green-500 border-r-0 rounded-xl">Supheng</span>
+          <span className="underline decoration-red-500 border-4 border-red-500 border-l-0 rounded-xl">Market</span>
+         </Link>
       </h1>
       <form className="hidden  md:flex md:justify-between border py-1 border-gray-500 rounded-lg max-w-[650px] w-[650px] min-w-[350px] bg-white whitespace-nowrap ">
         <CategoryFilter />

@@ -3,7 +3,6 @@ import Layout from "./Pages/Layout";
 import ErrorPage from "./Pages/ErrorPage";
 import ProductGrid from "./Pages/ProductGrid";
 import ProductDetailPage from "./Pages/DetailPage.tsx/ProductDetailPage";
-import Homepage from "./Pages/HomePage";
 import AdminPage from "./Pages/Admin/AdminPage";
 import AdminLayout from "./Pages/Admin/AdminLayout";
 import AddProduct from "./Pages/Admin/CRUD/AddProduct";
@@ -34,7 +33,7 @@ export const MyRouter = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       {index: true, element: <AdminPage />},
-      {path: "dashboard", element: <Dashboard />},
+      {index: true, path: "dashboard", element: <Dashboard />},
       {path: "admin_categories", element: <Category />},
       {path: "customer", element: <Customer />},
       {path: "admin_products", element: <AdminProductLayout /> ,

@@ -1,8 +1,10 @@
+import { useReadCate } from "../lib/supabase/CRUD";
 import useCategories from "../services/hooks/useCategory";
 import useProductQueryStore from "../store/ProductQueryStore";
 
 const Sidebar = () => {
-  const { data } = useCategories();
+  // const { data } = useCategories();
+  const {data} = useReadCate();
   const { setCategory, productQuery, setProductQueryNull } =
     useProductQueryStore();
   console.log(productQuery.category);
@@ -20,10 +22,10 @@ const Sidebar = () => {
         </li>
         {data?.map((c) => (
           <li
-            key={c}
+            key={c.id}
             className="w-full bg-slate-400 text-black text-xl cursor-pointer h-12 my-2 flex items-center pl-1"
-            value={c}
-            onClick={() => setCategory(c)}
+            value={c.category}
+            onClick={() => setCategory(c.category)}
           >
             {c}
           </li>

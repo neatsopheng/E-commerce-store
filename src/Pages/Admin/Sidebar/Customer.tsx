@@ -1,8 +1,9 @@
-import React from 'react'
-
 const Customer = () => {
   return (
-    <div>Customer</div>
+    <div className='p-5'>
+      <h3 className='text-white font-bold text-2xl'>Customer Order</h3>
+      <p className='text-center text-white text-xl mt-10'>No order yet!</p>
+    </div>
   )
 }
 
