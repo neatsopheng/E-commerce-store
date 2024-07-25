@@ -2,7 +2,6 @@ import { useState } from "react";
 import { INewProduct} from "../../../entities/Product";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUpdateProduct } from "../../../lib/supabase/CRUD";
-import { toast } from "sonner";
 
 const UpdateProduct = () => {
   const [formValue, setFormValue] = useState<INewProduct>({

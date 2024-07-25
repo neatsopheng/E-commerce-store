@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LuEye } from "react-icons/lu";
 import { Link } from "react-router-dom";
-import { useReadProduct, useDeleteProduct, usePostProduct } from "../../../lib/supabase/CRUD";
+import { useReadProduct, useDeleteProduct } from "../../../lib/supabase/CRUD";
 
 const AdminProduct = () => {
   const {
@@ -12,7 +12,7 @@ const AdminProduct = () => {
     error: errorProduct,
     isLoading,
   } = useReadProduct();
-  const { mutateAsync: deleteProduct, isPending: deleting } = useDeleteProduct();
+  const { mutateAsync: deleteProduct } = useDeleteProduct();
  
   const TotalProduct = readProduct?.data
     ?.reduce((acc, cur) => {

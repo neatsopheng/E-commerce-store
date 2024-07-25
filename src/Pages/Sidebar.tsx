@@ -1,11 +1,10 @@
 import { useReadCate } from "../lib/supabase/CRUD";
-import useCategories from "../services/hooks/useCategory";
 import useProductQueryStore from "../store/ProductQueryStore";
 
 const Sidebar = () => {
   // const { data } = useCategories();
   const {data} = useReadCate();
-  const { setCategory, productQuery, setProductQueryNull } =
+  const { setCategory, productQuery } =
     useProductQueryStore();
   console.log(productQuery.category);
 

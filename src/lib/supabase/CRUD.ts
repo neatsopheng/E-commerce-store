@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import supabase from "./config";
-import { INewProduct, IProduct } from "../../entities/Product";
+import { INewProduct } from "../../entities/Product";
 
 // ======== Read Product
 const fetchProduct = async () => {
