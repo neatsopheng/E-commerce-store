@@ -9,7 +9,7 @@ import { useReadSingleProduct } from "../../lib/supabase/CRUD";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const {data: DetailProduct, isLoading} = useReadSingleProduct(parseInt(id || ''));
+  const {data: DetailProduct, isLoading, error} = useReadSingleProduct(parseInt(id || ''));
 
   
   const CartItemQuery = useCartQueryStore((s) => s.CartItemQuery);
@@ -27,7 +27,7 @@ const ProductDetailPage = () => {
       toast.error("Item is in the cart");
     }
   };
-  console.log(id)
+  console.log(error)
 
   // const { data: categoryData, error: errorCategory } = useFIlterCategory(
   //   PDetail?.category!
@@ -43,6 +43,7 @@ const ProductDetailPage = () => {
       {isLoading ? (
         <p className="w-full text-4xl p-5 text-center animate-pulse font-extrabold">Loading...</p>
       ) : (
+        !error ?
         <div className=" w-full m-0 p-3">
           <Toaster richColors />
           <div className=" w-full bg-green-50 rounded-xl ">
@@ -179,6 +180,8 @@ const ProductDetailPage = () => {
         <p>{i.title}</p>
       )}</p> */}
         </div>
+        :
+        <p>Null</p>
       )}
     </>
   );
