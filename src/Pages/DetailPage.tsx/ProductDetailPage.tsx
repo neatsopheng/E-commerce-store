@@ -1,49 +1,40 @@
-import { Link, redirect, useNavigate, useParams } from "react-router-dom";
-import useProduct from "../../services/hooks/useProduct";
+import { useParams } from "react-router-dom";
 import BackNav from "../../shared/BackNav";
-import useFIlterCategory from "../../services/hooks/useFIlterCategory";
-import { FaRegHeart } from "react-icons/fa";
-import { IoIosAddCircleOutline } from "react-icons/io";
-import { IProduct } from "../../entities/Product";
-import { useState } from "react";
+// import { FaRegHeart } from "react-icons/fa";
+// import { IoIosAddCircleOutline } from "react-icons/io";
 import { ICart } from "../../entities/Cart";
 import { toast, Toaster } from "sonner";
 import useCartQueryStore from "../../store/AddToCartStore";
-import useProductQueryStore from "../../store/ProductQueryStore";
 import { useReadProduct } from "../../lib/supabase/CRUD";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const { data, isLoading, error } = useReadProduct();
+  const { data, isLoading } = useReadProduct();
   const PDetail = data?.data?.find((d) => d.pid === parseInt(id!));
   const CartItemQuery = useCartQueryStore((s) => s.CartItemQuery);
-  const setCategory = useProductQueryStore((s) => s.setCategory);
-  // setCategory: (category) => set(store => ({productQuery: {...store.productQuery, category}})),
 
   const addProduct = useCartQueryStore((s) => s.addProduct);
-  const [isAdded, setIsAdded] = useState(false);
-  const navigate = useNavigate();
+
 
   const handleAddToCart = (newItem: ICart) => {
     const existItem = CartItemQuery.find((i) => newItem.id === i.id);
     if (!existItem) {
       addProduct(newItem);
 
-      setIsAdded(true);
       toast.success("Added");
     } else {
       toast.error("Item is in the cart");
     }
   };
 
-  const { data: categoryData, error: errorCategory } = useFIlterCategory(
-    PDetail?.category!
-  );
-  {
-    errorCategory && <p className="text-4x">Nothing to show</p>;
-  }
-  // if (isLoading) return <p>Loading</p>;
-  if (error) return <p>Data not found</p>;
+  // const { data: categoryData, error: errorCategory } = useFIlterCategory(
+  //   PDetail?.category!
+  // );
+  // {
+  //   errorCategory && <p className="text-4x">Nothing to show</p>;
+  // }
+  // // if (isLoading) return <p>Loading</p>;
+  // if (error) return <p>Data not found</p>;
 
   return (
     <>
@@ -139,12 +130,11 @@ const ProductDetailPage = () => {
               Similar Item
             </p>
             <hr />
-            <div className="w-[100%]  flex-1 bg-white p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 justify-items-center">
+            {/* <div className="w-[100%]  flex-1 bg-white p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 justify-items-center">
               {categoryData?.map((item) => (
                 <div key={item.id}>
                   <div className="w-72 h-auto  bg-gray-300 rounded-xl relative">
                     <div className="w-full  h-64 bg-white  border-2 relative flex items-center justify-center overflow-hidden">
-                      {/* ==================Top Part==================================== */}
                       <div className="absolute flex justify-between w-full top-2 px-3 ">
                         <button className="rounded-full">
                           <IoIosAddCircleOutline
@@ -165,7 +155,6 @@ const ProductDetailPage = () => {
                       />
                     </div>
 
-                    {/* ===================    description     ============================================================================= */}
                     <div className="p-1 h-52">
                       <Link
                         to={`/products/${item.id}`}
@@ -181,7 +170,8 @@ const ProductDetailPage = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
+
           </div>
           {/* <p>{cartItem.map((i) =>
         <p>{i.title}</p>
