@@ -1,0 +1,59 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "build"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/admin/admin_products/update_product/:id",
+        "dest": "/index.html"
+      },
+      {
+        "src": "/admin/admin_products/add_product",
+        "dest": "/index.html"
+      },
+      {
+        "src": "/admin/admin_products",
+        "dest": "/index.html"
+      },
+      {
+        "src": "/admin/customer",
+        "dest": "/index.html"
+      },
+      {
+        "src": "/admin/admin_categories",
+        "dest": "/index.html"
+      },
+      {
+        "src": "/admin/dashboard",
+        "dest": "/index.html"
+      },
+      {
+        "src": "/admin",
+        "dest": "/index.html"
+      },
+      {
+        "src": "/products/:id",
+        "dest": "/index.html"
+      },
+      {
+        "src": "/products",
+        "dest": "/index.html"
+      },
+      {
+        "src": "/",
+        "dest": "/index.html"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
+      }
+    ]
+  }
+  
