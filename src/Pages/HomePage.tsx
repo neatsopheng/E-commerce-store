@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import "../App.css"
-import banner from "../assets/banner/pin_12.jpg"
 import img1 from "../assets/bgIMG_1.jpg"
 import img2 from "../assets/bgIMG_2.jpg"
 import img3 from "../assets/bgIMG_3.jpg"
@@ -16,11 +15,11 @@ function Homepage() {
       return () => clearInterval(autoPlay);
   }, [currentIndex])
 
-  const prevImg = () => {
-    setCurrentIndex((prev) => 
-      prev === 0 ? bg_img.length - 1 : prev - 1
-    )
-  }
+  // const prevImg = () => {
+  //   setCurrentIndex((prev) => 
+  //     prev === 0 ? bg_img.length - 1 : prev - 1
+  //   )
+  // }
   const nextImg = () => {
     setCurrentIndex((prev) => 
       prev === bg_img.length - 1 ? 0 :  prev + 1

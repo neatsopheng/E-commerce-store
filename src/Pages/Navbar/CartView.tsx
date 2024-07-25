@@ -1,8 +1,6 @@
-import { useEffect, useState, useRef } from "react";
-import { IoMdCloseCircleOutline } from "react-icons/io";
+import {  useRef } from "react";
 import { CiTrash } from "react-icons/ci";
 import useCartQueryStore from "../../store/AddToCartStore";
-import { ICart } from "../../entities/Cart";
 import { toast, Toaster } from "sonner";
 import { useReactToPrint } from "react-to-print";
 import CartPrint from "./CartPrint";

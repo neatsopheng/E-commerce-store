@@ -1,8 +1,6 @@
 import { Outlet } from "react-router-dom";
 import NavbarOne from "./Navbar/NavbarOne";
-import Sidebar from "./Sidebar";
 import Footer from "./Footer";
-import Homepage from "./HomePage";
 
 const Layout = () => {
   return (
