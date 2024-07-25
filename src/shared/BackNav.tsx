@@ -5,7 +5,7 @@ const BackNav = () => {
     const navigate = useNavigate()
   return (
     <div className=" mb-10 h-10 w-fit px-4 py-2 cursor-pointer border-2 rounded-xl bg-yellow-300 hover:bg-yellow-500"
-    onClick={() => navigate('/')}
+    onClick={() => navigate(-1)}
     >
         <IoMdArrowRoundBack fontSize={'22px'} />
 
