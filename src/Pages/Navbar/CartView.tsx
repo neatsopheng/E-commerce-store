@@ -50,11 +50,11 @@ const CartView = ({ setShowCartView, showCart }: Prop) => {
         onClick={() => setShowCartView()}
         className={`${
           showCart ? "visible opacity-100" : "invisible opacity-0"
-        } absolute w-[90%] md:w-full top-0 left-0 backdrop-blur-none backdrop-brightness-75  h-screen transition duration-75`}
+        } absolute w-full top-0 left-0 backdrop-blur-none backdrop-brightness-75  h-screen transition duration-75`}
       ></div>
 
       <div
-        className={`fixed right-0 z-20  w-[30.5rem] h-screen bg-[#f5eec2] text-white
+        className={`fixed right-0 z-20  w-[25.5rem] md:w-[30rem] h-screen bg-[#f5eec2] text-white
         overflow-y-scroll no-scrollbar
         ${
           showCart ? "visible opacity-100" : "invisible opacity-0"
@@ -85,7 +85,7 @@ const CartView = ({ setShowCartView, showCart }: Prop) => {
               CartItemQuery?.map((i) => (
                 <li
                   key={i.id}
-                  className="bg-gray-100 my-5 text-black h-36 flex items-center justify-between px-3 gap-5 border-b"
+                  className="bg-gray-100 my-5 text-black h-auto py-1 flex items-center justify-between px-3 gap-5 border-b"
                 >
                   <img src={i.imgUrl} className="w-20 h-20" />
                   <div className=" flex-1">
