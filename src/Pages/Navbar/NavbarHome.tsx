@@ -34,7 +34,7 @@ const NavbarHome = () => {
           )}
         </li>
         <li>
-          <Link to={"admin"} reloadDocument>
+          <Link to={"/admin"} >
             <MdOutlineAccountCircle fontSize={"33px"} cursor={"pointer"} />
           </Link>
         </li>

@@ -72,6 +72,7 @@ function Homepage() {
       </div>
       {/* Category end */}
       <div>
+        <img src="" loading="lazy" alt="" />
 
       </div>
       <Footer />

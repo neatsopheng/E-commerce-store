@@ -13,7 +13,7 @@ const AdminSidebar = () => {
   const [isExpanded, setExpanded] = useState(false);
   const sidebarItem = [
     {
-      link: "dashboard",
+      link: "",
       description: "Dashboard",
       icon: <MdOutlineDashboard />,
     },

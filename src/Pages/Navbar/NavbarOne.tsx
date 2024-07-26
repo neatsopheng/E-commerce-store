@@ -4,13 +4,14 @@ import { IoCart } from "react-icons/io5";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import CartView from "./CartView";
 import CategoryFilter from "./CategoryFilter";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useCartQueryStore from "../../store/AddToCartStore";
 
 const NavbarOne = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [showCartView, setShowCartView] = useState(false);
   const CartItemQuery = useCartQueryStore((s) => s.CartItemQuery);
+  const navigate = useNavigate();
 
   return (
     <nav
@@ -69,10 +70,10 @@ const NavbarOne = () => {
             </span>
           )}
         </li>
-        <li>
-          <Link to={"admin"} reloadDocument>
+        <li onClick={() => navigate('/admin')}>
+          <div >
             <MdOutlineAccountCircle fontSize={"33px"} cursor={"pointer"} />
-          </Link>
+          </div>
         </li>
       </ul>
       <CartView
