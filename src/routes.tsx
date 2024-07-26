@@ -26,7 +26,7 @@ export const MyRouter = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <ProductGrid />},
-      { path: "products/:id", element: <ProductDetailPage />,},
+      { path: ":id", element: <ProductDetailPage />,},
     ],
   },
   {
