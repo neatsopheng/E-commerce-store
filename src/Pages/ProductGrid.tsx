@@ -99,7 +99,7 @@ const ProductGrid = () => {
                         >
                           Add to cart
                         </button>
-                        <a href={`${item.pid}`}>
+                        <a href={`products/${item.pid}`}>
                           <button className="border w-fit py-1 px-7 text-lg bg-yellow-600 font-semibold">
                             View Detail
                           </button>
@@ -165,7 +165,7 @@ const ProductGrid = () => {
                         >
                           Add to cart
                         </button>
-                        <a href={`${item.pid}`}>
+                        <a href={`products/${item.pid}`}>
                           <button className="border w-fit py-1 px-7 text-lg bg-yellow-600 font-semibold">
                             View Detail
                           </button>
