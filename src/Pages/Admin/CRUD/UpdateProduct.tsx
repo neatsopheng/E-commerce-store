@@ -1,9 +1,15 @@
-import { useState } from "react";
-import { INewProduct} from "../../../entities/Product";
+import { useEffect, useState } from "react";
+import { INewProduct } from "../../../entities/Product";
 import { useNavigate, useParams } from "react-router-dom";
-import { useUpdateProduct } from "../../../lib/supabase/CRUD";
+import {
+  useReadCate,
+  useReadSingleProduct,
+  useUpdateProduct,
+} from "../../../lib/supabase/CRUD";
 
 const UpdateProduct = () => {
+  const { id } = useParams();
+  const { data: currentProduct } = useReadSingleProduct(parseInt(id || ""));
   const [formValue, setFormValue] = useState<INewProduct>({
     pname: "",
     price: 0,
@@ -11,22 +17,36 @@ const UpdateProduct = () => {
     category: "",
     image: "",
   });
-  const { id } = useParams();
-  // const { mutateAsync: UpdateProduct, isPending } = useUpdateProduct(
-  //   parseInt(id || "")
-  // );
-  const {mutateAsync: updateProduct, isPending} = useUpdateProduct(parseInt(id || ""));
+
+  const { mutateAsync: updateProduct, isPending } = useUpdateProduct(
+    parseInt(id || "")
+  );
+  const { data: category } = useReadCate();
   const navigate = useNavigate();
+  
+
+  useEffect(() => {
+    setFormValue({
+      ...formValue,
+      pname: currentProduct?.pname,
+      price: currentProduct?.price,
+      description: currentProduct?.description,
+      category: currentProduct?.category,
+      image: currentProduct?.image,
+    });
+  }, [currentProduct]);
+
   const handleUpdate = async () => {
-    setFormValue({ ...formValue});
+    setFormValue({ ...formValue });
     const newProduct = await updateProduct(formValue);
     if (newProduct) {
-      console.log("Added");
-      navigate("/");
+      console.log("Updated");
+      navigate('/');
+      location.reload();
+      
     }
     if (!newProduct) console.log("product add failed");
-
-  }
+  };
   if (isPending) return <p>Uploading...</p>;
 
   if (isPending) return <p>Uploading...</p>;
@@ -41,6 +61,7 @@ const UpdateProduct = () => {
           Product Title
         </label>
         <input
+          value={formValue.pname}
           type="text"
           className="form-input"
           required
@@ -53,6 +74,7 @@ const UpdateProduct = () => {
         <label htmlFor="">Price</label>//
         <input
           type="text"
+          value={formValue.price}
           className="form-input"
           required
           onChange={(e) => {
@@ -64,6 +86,7 @@ const UpdateProduct = () => {
         <label htmlFor="">Description</label>
         <textarea
           className="form-input"
+          value={formValue.description}
           required
           onInput={(e) => {
             setFormValue({ ...formValue, description: e.currentTarget.value });
@@ -73,6 +96,7 @@ const UpdateProduct = () => {
       <div>
         <label htmlFor="category">Category</label>
         <select
+          value={formValue.category}
           name="category"
           className="form-input"
           required
@@ -81,10 +105,11 @@ const UpdateProduct = () => {
           }
         >
           <option value=""></option>
-          <option value="electronics">Electronics</option>
-          <option value="jewelery">Jewelery</option>
-          <option value="men's Clothing">Men's Clothing</option>
-          <option value="women's Clothing">Men's Clothing</option>
+          {category?.map((c) => (
+            <option key={c.id} value={c.category}>
+              {c.category}
+            </option>
+          ))}
         </select>
       </div>
       <div className="flex flex-col">
@@ -98,6 +123,7 @@ const UpdateProduct = () => {
         />
         <input
           type="text"
+          value={formValue.image}
           className="form-input"
           placeholder="Image-url"
           onChange={(e) =>

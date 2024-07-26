@@ -90,7 +90,7 @@ const AdminProduct = () => {
                       </td>
                       <td className="py-1 px-3 md:py-3 md:px-6 border-2">
                         
-                        <Link to={`update_product/${item.pid}`}>
+                        <Link to={`update_product/${item.pid}`} reloadDocument>
                           <button className=" text-yellow-500 text-2xl hover:text-yellow-600">
                             <CiEdit />
                           </button>

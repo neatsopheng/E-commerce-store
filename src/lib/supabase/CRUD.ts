@@ -15,7 +15,7 @@ export const useReadProduct = () => useQuery({
 // ==== Read Single Specific Product
 const fetchSingleProduct = async (productId: number) => {
     const response = await supabase.from('tbproduct').select().eq('pid', productId).single();
-    return response;
+    return response.data;
 }
 export const useReadSingleProduct = (productId: number) => useQuery({
     queryKey: ['products'],

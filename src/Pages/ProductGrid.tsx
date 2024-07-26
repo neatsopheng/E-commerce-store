@@ -3,7 +3,6 @@ import { FaRegHeart } from "react-icons/fa";
 import { ICart } from "../entities/Cart";
 import useCartQueryStore from "../store/AddToCartStore";
 import LoadingPage from "./LoadingPage";
-import Homepage from "./HomePage";
 import { toast, Toaster } from "sonner";
 import { useReadByCategory, useReadProduct } from "../lib/supabase/CRUD";
 import useProductQueryStore from "../store/ProductQueryStore";
@@ -15,7 +14,7 @@ const ProductGrid = () => {
   const { productQuery } = useProductQueryStore();
   // fetch data hook
   const { data: readProduct, error, isLoading } = useReadProduct();
-  const { data: readByCate } = useReadByCategory(productQuery.category!);
+  const { data: readByCate} = useReadByCategory(productQuery.category!);
 
   // function for event
   const handleAddToCart = (newItem: ICart) => {
@@ -33,7 +32,7 @@ const ProductGrid = () => {
   if (error) return <p>Error fetching product</p>;
   return (
     <>
-      <Homepage />
+      
       <Toaster position="bottom-right" richColors />
       <div>
         <p className="my-2 font-bold mx-5 text-2xl">POPULAR ITEM</p>
@@ -43,7 +42,7 @@ const ProductGrid = () => {
 
            category === undefined ? map readProduct : map readByCategory 
            */}
-          {!productQuery.category
+          {productQuery.category === undefined
             ? readProduct?.data?.map((item) => (
                 <div key={item.pid}>
                   <div className="w-72  h-auto  bg-gray-300 rounded-xl relative">

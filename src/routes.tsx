@@ -12,15 +12,20 @@ import AdminProduct from "./Pages/Admin/Sidebar/AdminProduct";
 import Category from "./Pages/Admin/Sidebar/Category";
 import Customer from "./Pages/Admin/Sidebar/Customer";
 import AdminProductLayout from "./Pages/Admin/Sidebar/AdminProductLayout";
+import Homepage from "./Pages/HomePage";
 
 export const MyRouter = createBrowserRouter([
   {
     path: "/",
+    index: true,
+    element: <Homepage />
+  },
+  {
+    path: "/products",
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, path: "", element: <ProductGrid /> },
-      { path: "products", element: <ProductGrid />},
+      { index: true, path: "", element: <ProductGrid />},
       { path: "products/:id", element: <ProductDetailPage />,},
     ],
   },

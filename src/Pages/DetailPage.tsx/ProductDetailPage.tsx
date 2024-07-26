@@ -14,7 +14,7 @@ const ProductDetailPage = () => {
   
   const CartItemQuery = useCartQueryStore((s) => s.CartItemQuery);
   const addProduct = useCartQueryStore((s) => s.addProduct);
-  console.log(DetailProduct?.data)
+  console.log(DetailProduct)
 
 
   const handleAddToCart = (newItem: ICart) => {
@@ -50,16 +50,16 @@ const ProductDetailPage = () => {
             <BackNav />
             <div className="flex flex-col md:flex-row items-center md:items-start gap-10 ">
               <img
-                src={DetailProduct?.data.image}
+                src={DetailProduct?.image}
                 className="w-[30%] md:w-[25%] lg:w-[20%] xl:w-[15%] h-auto p-5"
               />
               <div>
-                <p className="font-bold text-2xl">US ${DetailProduct?.data.price}</p>
+                <p className="font-bold text-2xl">US ${DetailProduct?.price}</p>
                 <p className="text-whtie text-xl font-medium">
-                  {DetailProduct?.data.pname}
+                  {DetailProduct?.pname}
                 </p>
-                <p className="mt-5">{DetailProduct?.data.description}</p>
-                <p className="mt-5">{DetailProduct?.data.category}</p>
+                <p className="mt-5">{DetailProduct?.description}</p>
+                <p className="mt-5">{DetailProduct?.category}</p>
                 <div className="mt-5">
                   <p className="font-semibold">Quantity</p>
                   {/* <div className="flex items-center justify-start  gap-2">
@@ -88,22 +88,22 @@ const ProductDetailPage = () => {
                     className="mt-5 border py-2 px-5 bg-yellow-600 text-white font-bold"
                     onClick={() =>
                       handleAddToCart({
-                        id: DetailProduct?.data.pid,
-                        title: DetailProduct?.data.pname,
-                        price: parseFloat(DetailProduct?.data.price),
-                        totalPrice: parseFloat(DetailProduct?.data.price),
+                        id: DetailProduct?.pid,
+                        title: DetailProduct?.pname,
+                        price: parseFloat(DetailProduct.price),
+                        totalPrice: parseFloat(DetailProduct.price),
                         count: 1,
-                        imgUrl: DetailProduct?.data.image,
+                        imgUrl: DetailProduct?.image,
                       })
                     }
                   >
                     Add to cart
                   </button>
                 </div>
-                {DetailProduct?.data.rating && (
+                {DetailProduct?.rating && (
                   <p>
-                    Rating {DetailProduct?.data.rating && DetailProduct?.data.rating.rate} by{" "}
-                    {DetailProduct?.data.rating && DetailProduct?.data.rating.count} people
+                    Rating {DetailProduct?.rating && DetailProduct?.rating.rate} by{" "}
+                    {DetailProduct?.rating && DetailProduct?.count} people
                   </p>
                 )}
               </div>

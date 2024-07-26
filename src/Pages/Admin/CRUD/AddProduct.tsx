@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { INewProduct } from "../../../entities/Product";
 import { useNavigate } from "react-router-dom";
-import { usePostProduct } from "../../../lib/supabase/CRUD";
+import { usePostProduct, useReadCate } from "../../../lib/supabase/CRUD";
 
 const AddProduct = () => {
   const [formValue, setFormValue] = useState<INewProduct>({
@@ -12,6 +12,7 @@ const AddProduct = () => {
     image: "",
   });
   const { mutateAsync: postProduct, isPending } = usePostProduct();
+  const {data:category} = useReadCate();
   const navigate = useNavigate();
 
 
@@ -79,10 +80,10 @@ const AddProduct = () => {
           }
         >
           <option value=""></option>
-          <option value="electronics">Electronics</option>
-          <option value="jewelery">Jewelery</option>
-          <option value="men's Clothing">Men's Clothing</option>
-          <option value="women's Clothing">Men's Clothing</option>
+          {category?.map((c) => 
+            <option key={c.id} value={c.category}>{c.category}</option>
+          )}
+
         </select>
       </div>
       <div className="flex flex-col">
