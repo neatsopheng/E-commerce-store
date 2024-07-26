@@ -18,7 +18,7 @@ export const MyRouter = createBrowserRouter([
   {
     path: "/",
     index: true,
-    element: <Homepage />
+    element: <Homepage />,
   },
   {
     path: "/products",
@@ -26,7 +26,7 @@ export const MyRouter = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <ProductGrid />},
-      { path: "products/:id", element: <ProductDetailPage />,},
+      { path: ":id", element: <ProductDetailPage />,},
     ],
   },
   {
@@ -34,7 +34,7 @@ export const MyRouter = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       {index: true, element: <AdminPage />},
-      {index: true, path: "dashboard", element: <Dashboard />},
+      {path: "dashboard", element: <Dashboard />},
       {path: "admin_categories", element: <Category />},
       {path: "customer", element: <Customer />},
       {path: "admin_products", element: <AdminProductLayout /> ,
