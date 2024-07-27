@@ -11,6 +11,8 @@
     "start": "node server/server.cjs"
   },
   "dependencies": {
+    "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide": "^4.1.4",
     "@supabase/supabase-js": "^2.44.4",
     "@tanstack/react-query": "^5.45.0",
     "@tanstack/react-query-devtools": "^5.45.0",
@@ -25,6 +27,7 @@
     "react-to-print": "^2.15.1",
     "react-toastify": "^10.0.5",
     "sonner": "^1.5.0",
+    "swiper": "^11.1.8",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
