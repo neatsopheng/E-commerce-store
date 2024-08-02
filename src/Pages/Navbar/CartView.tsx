@@ -54,7 +54,7 @@ const CartView = ({ setShowCartView, showCart }: Prop) => {
       ></div>
 
       <div
-        className={`fixed right-0 z-20  w-[25.5rem] md:w-[30rem] h-screen bg-[#f5eec2] text-white
+        className={`fixed right-0 z-20  w-full md:w-[30rem] h-screen bg-[#f5eec2] text-white
         overflow-y-scroll no-scrollbar
         ${
           showCart ? "visible opacity-100" : "invisible opacity-0"
@@ -66,7 +66,6 @@ const CartView = ({ setShowCartView, showCart }: Prop) => {
             className="rounded-md cursor-pointer absolute right-5 top-5  border-2 border-red-500 hover:bg-red-500 hover:text-white text-red-500 px-3 py-1 text-lg transition"
             onClick={() => {
               setShowCartView();
-              console.log(showCart);
             }}
           >
             ⌫
