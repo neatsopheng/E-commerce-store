@@ -17,7 +17,7 @@ const NavbarOne = () => {
 
   return (
     <nav
-      className={` md:px-20 sticky top-0 md:py-5 h-auto px-5 py-2 mt-2 w-full z-10 flex gap-5 items-center justify-between border-b-8 bg-white transition duration-[0.6s] `}
+      className={` md:px-20 sticky top-0 md:py-5 h-auto px-5 py-2 mt-2 w-full z-10 flex flex-col md:flex-row gap-5 items-center justify-between border-b-8 bg-white transition duration-[0.6s] `}
 
     >
       <h1 className="font-bold text-xl md:text-2xl lg:text-4xl  whitespace-nowrap text-green-600 hover:brightness-150 transition duration-300">
@@ -49,6 +49,7 @@ const NavbarOne = () => {
         } p-1 flex md:hidden  flex-1 justify-end`}
       >
         <input
+          onChange={(e) => setSearch(e.target.value)}
           placeholder="Search..."
           className={`${showSearch ? "w-full" : "hidden"}  ps-3  outline-none`}
         />
