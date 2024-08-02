@@ -67,9 +67,9 @@ const NavbarOne = () => {
 
         <div onClick={() => setShowSearch(true)}>
           <CiSearch
-            fontSize={"36px"}
+            fontSize={"39px"}
             cursor={"pointer"}
-            className=" w-12 rounded-2xl"
+            className=" w-12 rounded-2xl bg-gray-300 p-1"
           />
         </div>
       </form>

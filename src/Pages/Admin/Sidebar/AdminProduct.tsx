@@ -82,7 +82,7 @@ const AdminProduct = () => {
                 <tbody>
                   {/* data.map */}
                   {readProduct?.data?.filter((item) => 
-                  !search.toLowerCase() || item.pname.toLowerCase().includes(search)
+                  !search.toLowerCase() || item.pname.toLowerCase().includes(search.toLowerCase())
                 )
                   .map((item: any, index: number) => (
                     <tr
