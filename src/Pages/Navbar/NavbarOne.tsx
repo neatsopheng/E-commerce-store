@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import { IoIosArrowBack } from "react-icons/io";
 import { IoCart } from "react-icons/io5";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import CartView from "./CartView";
@@ -17,16 +18,19 @@ const NavbarOne = () => {
 
   return (
     <nav
-      className={` md:px-20 sticky top-0 md:py-5 h-auto px-5 py-2 mt-2 w-full z-10 flex flex-col md:flex-row gap-5 items-center justify-between border-b-8 bg-white transition duration-[0.6s] `}
-
+      className={` md:px-20 sticky top-0 md:py-5 h-auto px-5 py-2 mt-2 w-full z-10 flex  gap-5 items-center justify-between border-b-8 bg-white transition duration-[0.6s] `}
     >
       <h1 className="font-bold text-xl md:text-2xl lg:text-4xl  whitespace-nowrap text-green-600 hover:brightness-150 transition duration-300">
         <Link to={"/"}>
-          <span className="text-red-500 underline decoration-green-500 border-4 border-green-500 border-r-0 rounded-xl">Supheng</span>
-          <span className="underline decoration-red-500 border-4 border-red-500 border-l-0 rounded-xl">Market</span>
-         </Link>
+          <span className="text-red-500 underline decoration-green-500 border-4 border-green-500 border-r-0 rounded-xl">
+            Supheng
+          </span>
+          <span className="underline decoration-red-500 border-4 border-red-500 border-l-0 rounded-xl">
+            Market
+          </span>
+        </Link>
       </h1>
-      
+
       <form className="hidden  md:flex md:justify-between border py-1 border-gray-500 rounded-lg max-w-[650px] w-[650px] min-w-[350px] bg-white whitespace-nowrap ">
         <CategoryFilter />
         <input
@@ -45,20 +49,27 @@ const NavbarOne = () => {
       </form>
       <form
         className={`${
-          showSearch ? "border-2" : "border-none"
-        } p-1 flex md:hidden  flex-1 justify-end`}
+          showSearch ? "border-2 bg-gray-300 rounded-xl absolute left-0 px-5 py-2   " : "border-none"
+        } flex items-center justify-center md:hidden  w-full  border-2 flex-1  `}
       >
+        {showSearch && (
+          <div onClick={() => setShowSearch(false)}>
+            <IoIosArrowBack fontSize={"36px"} cursor={"pointer"} />
+          </div>
+        )}
         <input
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search..."
-          className={`${showSearch ? "w-full" : "hidden"}  ps-3  outline-none`}
+          className={`${
+            showSearch ? "w-full" : "hidden"
+          }  ps-3 py-2 mx-10 text-lg  outline-none `}
         />
 
-        <div onClick={() => setShowSearch(!showSearch)}>
+        <div onClick={() => setShowSearch(true)}>
           <CiSearch
-            fontSize={"26px"}
+            fontSize={"36px"}
             cursor={"pointer"}
-            className="bg-gray-300 w-12 rounded-2xl"
+            className=" w-12 rounded-2xl"
           />
         </div>
       </form>
@@ -74,8 +85,8 @@ const NavbarOne = () => {
             </span>
           )}
         </li>
-        <li onClick={() => navigate('/admin')}>
-          <div >
+        <li onClick={() => navigate("/admin")}>
+          <div>
             <MdOutlineAccountCircle fontSize={"33px"} cursor={"pointer"} />
           </div>
         </li>

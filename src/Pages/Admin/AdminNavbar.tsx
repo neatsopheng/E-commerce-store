@@ -8,9 +8,9 @@ const AdminNavbar = () => {
           PStore Admin
         </h1>
       </Link>
-      <div className="flex flex-col md:flex-row items-center gap-1 md:gap-8">
+      <div className="flex flex-row md:flex-row items-center gap-1 md:gap-8">
         <div className="text-white text-sm">Logged in as Admin1</div>
-        <button className="border border-red-500 bg-red-500 text-white px-4 py-2 rounded-xl">Logout</button>
+        <button className="border border-red-500 bg-red-500 text-white px-4 py-1 rounded-xl">Logout</button>
       </div>
     </div>
   )

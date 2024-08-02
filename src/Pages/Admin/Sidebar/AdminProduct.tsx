@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { LuEye } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { useReadProduct, useDeleteProduct } from "../../../lib/supabase/CRUD";
+import { useState } from "react";
 
 const AdminProduct = () => {
   const {
@@ -13,6 +14,7 @@ const AdminProduct = () => {
     isLoading,
   } = useReadProduct();
   const { mutateAsync: deleteProduct } = useDeleteProduct();
+  const [search, setSearch] = useState("");
  
   const TotalProduct = readProduct?.data
     ?.reduce((acc, cur) => {
@@ -33,24 +35,34 @@ const AdminProduct = () => {
         <div className="w-full block my-0 mx-auto p-10">
           <div className="bg-gray-800 mb-5 text-white w-[100%] whitespace-nowrap py-2 flex md:flex-row flex-col items-center justify-between px-5">
             <p className="font-semibold flex gap-2 items-center">
-              <LuEye /> Viewing readProduct list
+              <LuEye /> Viewing Product list
             </p>
-            <div className="flex gap-5">
+            <div className="flex gap-5 my-2">
               <Link to={"add_product"}>
-                <button className="bg-green-500 hover:bg-green-600 active:bg-green-500 px-5 py-2 text-white font-semibold rounded-sm">
+                <button className="bg-green-500 hover:bg-green-600 active:bg-green-500 px-2 py-2 md:px-5 md:py-2 text-white text-sm md:font-semibold rounded-sm">
                   {" "}
                   New Product
                 </button>
               </Link>
 
               <button
-                className="bg-red-500 hover:bg-red-600 active:bg-red-500 px-5 py-2 text-white font-semibold rounded-sm"
+                className="bg-red-500 hover:bg-red-600 active:bg-red-500 px-2 py-2 md:px-5 md:py-2 text-white text-sm md:font-semibold rounded-sm"
                 onClick={() => alert("Function not available yet!")}
               >
                 Delete All
               </button>
             </div>
           </div>
+          
+          <div className="w-full h-auto my-2">
+            <input 
+              type="text"
+              placeholder="Search Product..."
+              className="w-full md:w-[500px] px-4 py-1 rounded-xl" 
+              onChange={(e) => setSearch(e.target.value)}
+              />
+          </div>
+          
           <div className="w-full overflow-auto">
             {isLoading ? (
               <p className="text-center w-full text-white text-4xl animate-pulse p-5">
@@ -69,7 +81,10 @@ const AdminProduct = () => {
                 </thead>
                 <tbody>
                   {/* data.map */}
-                  {readProduct?.data?.map((item: any, index: number) => (
+                  {readProduct?.data?.filter((item) => 
+                  !search.toLowerCase() || item.pname.toLowerCase().includes(search)
+                )
+                  .map((item: any, index: number) => (
                     <tr
                       key={item.pid}
                       className={`${
