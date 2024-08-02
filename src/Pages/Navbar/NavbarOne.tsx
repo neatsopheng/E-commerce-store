@@ -49,7 +49,7 @@ const NavbarOne = () => {
       </form>
       <form
         className={`${
-          showSearch ? "border-2 bg-gray-300 rounded-xl absolute left-0 px-5 py-2   " : "border-none"
+          showSearch ? "border-2 bg-gray-300 rounded-xl   " : "border-none"
         } flex items-center justify-center md:hidden  w-full  border-2 flex-1  `}
       >
         {showSearch && (
