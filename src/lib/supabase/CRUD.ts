@@ -26,7 +26,6 @@ export const useReadSingleProduct = (productId: number) => useQuery({
 // ========= Fetch Category
 const fetchCate = async () => {
     const response = await supabase.from('tbcategory').select();
-    console.log(response.data)
     return response.data;
 }
 export const useReadCate = () => useQuery({
@@ -39,7 +38,6 @@ export const useReadCate = () => useQuery({
 
 const fetchByCategory = async (category?: string) => {
     const response = await supabase.from('tbproduct').select().eq('category', category);
-    console.log(response)
     return response;
 }
 

@@ -6,7 +6,6 @@ const CategoryFilter = () => {
   const { setCategory } = useProductQueryStore();
   if (isLoading) return null;
   if (error) return null;
-  console.log(category);
 
   return (
     <select

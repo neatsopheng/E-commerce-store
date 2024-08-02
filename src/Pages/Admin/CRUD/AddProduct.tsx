@@ -21,7 +21,7 @@ const AddProduct = () => {
     const newProduct = await postProduct(formValue);
     if (newProduct) {
       console.log("Added");
-      navigate("/");
+      navigate("/products");
     }
     if (!newProduct) console.log("product add failed");
 

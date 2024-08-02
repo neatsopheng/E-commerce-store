@@ -6,11 +6,13 @@ import CartView from "./CartView";
 import CategoryFilter from "./CategoryFilter";
 import { Link, useNavigate } from "react-router-dom";
 import useCartQueryStore from "../../store/AddToCartStore";
+import useProductQueryStore from "../../store/ProductQueryStore";
 
 const NavbarOne = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [showCartView, setShowCartView] = useState(false);
   const CartItemQuery = useCartQueryStore((s) => s.CartItemQuery);
+  const setSearch = useProductQueryStore((s) => s.setSearchText);
   const navigate = useNavigate();
 
   return (
@@ -30,6 +32,7 @@ const NavbarOne = () => {
         <input
           type="search"
           placeholder="Search..."
+          onChange={(e) => setSearch(e.target.value)}
           className="ps-3 w-full outline-none border-l-2"
         />
         <button>

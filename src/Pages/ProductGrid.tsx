@@ -8,6 +8,7 @@ import { useReadByCategory, useReadProduct } from "../lib/supabase/CRUD";
 import useProductQueryStore from "../store/ProductQueryStore";
 
 const ProductGrid = () => {
+  const searchedText = useProductQueryStore((s) => s.productQuery.search)
   // store
   const addProduct = useCartQueryStore((s) => s.addProduct);
   const CartItemQuery = useCartQueryStore((s) => s.CartItemQuery);
@@ -27,7 +28,6 @@ const ProductGrid = () => {
     }
   };
 
-
   if (isLoading) return <LoadingPage />;
   if (error) return <p>Error fetching product</p>;
   return (
@@ -39,11 +39,12 @@ const ProductGrid = () => {
         <div className=" w-[100%]  flex-1 bg-white p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 justify-items-center">
           {/*
           + At this point we make a condition to show data by category
-
            category === undefined ? map readProduct : map readByCategory 
            */}
           {productQuery.category === undefined
-            ? readProduct?.data?.map((item) => (
+            ? readProduct?.data?.filter((item) => 
+              !searchedText?.toLowerCase() || item.pname.toLowerCase().includes(searchedText.toLowerCase())
+            )?.map((item) => (
                 <div key={item.pid}>
                   <div className="w-72  h-auto  bg-gray-300 rounded-xl relative">
                     <div className="w-full  h-72 bg-white  border-2 relative flex items-center justify-center overflow-hidden">
