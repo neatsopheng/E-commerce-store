@@ -6,6 +6,7 @@ import { ICart } from "../../entities/Cart";
 import { toast, Toaster } from "sonner";
 import useCartQueryStore from "../../store/AddToCartStore";
 import { useReadSingleProduct } from "../../lib/supabase/CRUD";
+import RelevantItem from "./RelevantItem";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -88,12 +89,12 @@ const ProductDetailPage = () => {
                     className="mt-5 border py-2 px-5 bg-yellow-600 text-white font-bold"
                     onClick={() =>
                       handleAddToCart({
-                        id: DetailProduct?.pid,
-                        title: DetailProduct?.pname,
+                        id: DetailProduct?.pid!,
+                        title: DetailProduct?.pname!,
                         price: parseFloat(DetailProduct.price),
                         totalPrice: parseFloat(DetailProduct.price),
                         count: 1,
-                        imgUrl: DetailProduct?.image,
+                        imgUrl: DetailProduct?.image!,
                       })
                     }
                   >
@@ -103,7 +104,7 @@ const ProductDetailPage = () => {
                 {DetailProduct?.rating && (
                   <p>
                     Rating {DetailProduct?.rating && DetailProduct?.rating.rate} by{" "}
-                    {DetailProduct?.rating && DetailProduct?.count} people
+                    {DetailProduct?.rating && DetailProduct?.rating.count} people
                   </p>
                 )}
               </div>
@@ -128,54 +129,7 @@ const ProductDetailPage = () => {
           </div>
         </div> */}
 
-          <div>
-            <p className="font-bold text-2xl my-5 ml-5 p-2 rounded-xl bg-gray-100 w-fit">
-              Similar Item
-            </p>
-            <hr />
-            {/* <div className="w-[100%]  flex-1 bg-white p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 justify-items-center">
-              {categoryData?.map((item) => (
-                <div key={item.id}>
-                  <div className="w-72 h-auto  bg-gray-300 rounded-xl relative">
-                    <div className="w-full  h-64 bg-white  border-2 relative flex items-center justify-center overflow-hidden">
-                      <div className="absolute flex justify-between w-full top-2 px-3 ">
-                        <button className="rounded-full">
-                          <IoIosAddCircleOutline
-                            fontSize={"32px"}
-                            color="red"
-                          />
-                        </button>
-                        <button className="rounded-full">
-                          <FaRegHeart
-                            fontSize={"25px"}
-                            className="text-red-500"
-                          />
-                        </button>
-                      </div>
-                      <img
-                        src={item.image}
-                        className="w-44 h-auto hover:scale-105 transition duration-300"
-                      />
-                    </div>
-
-                    <div className="p-1 h-52">
-                      <Link
-                        to={`/products/${item.id}`}
-                        className="text-sm md:text-md"
-                      >
-                        {item.title}
-                      </Link>
-                      <p className="text-gray-500">{item.category}</p>
-                      <p className="font-bold absolute bottom-3 right-3">
-                        ${item.price}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div> */}
-
-          </div>
+          <RelevantItem currentCate={DetailProduct?.category || ''} />
           {/* <p>{cartItem.map((i) =>
         <p>{i.title}</p>
       )}</p> */}

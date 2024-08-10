@@ -18,7 +18,7 @@ const fetchSingleProduct = async (productId: number) => {
     return response.data;
 }
 export const useReadSingleProduct = (productId: number) => useQuery({
-    queryKey: ['products'],
+    queryKey: ['products', productId],
     queryFn: () => fetchSingleProduct(productId),
     staleTime: 10000
 })
