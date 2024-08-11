@@ -4,6 +4,7 @@ import { useReadByCategory } from "../../lib/supabase/CRUD"
 import { toast } from "sonner";
 import { ICart } from "../../entities/Cart";
 import useCartQueryStore from "../../store/AddToCartStore";
+import { Link } from "react-router-dom";
 
 interface Props {
     currentCate: string;
@@ -61,15 +62,15 @@ const RelevantItem = ({currentCate}: Props) => {
 
                     {/* ===================    description     ============================================================================= */}
                     <div className="p-1 h-52 text-center">
-                      <a
-                        href={`${item.pid}`}
+                      <Link
+                        to={`../${item.pid}`}
                         className="text-sm md:text-md font-semibold"
                       >
                         <p>
                           {item.pname.slice(0, 50)}
                           <span>{item.pname.length > 50 ? "....." : ""}</span>
                         </p>
-                      </a>
+                      </Link>
                       <p className="text-gray-500">{item.category}</p>
                       <p className="font-bold text-red-500 bottom-50 right-5">
                         ${item.price}
@@ -90,11 +91,11 @@ const RelevantItem = ({currentCate}: Props) => {
                         >
                           Add to cart
                         </button>
-                        <a href={`${item.pid}`}>
+                        <Link to={`../${item.pid}`}>
                           <button className="border w-fit py-1 px-7 text-lg bg-yellow-600 font-semibold">
                             View Detail
                           </button>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

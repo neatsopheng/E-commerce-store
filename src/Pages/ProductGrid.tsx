@@ -6,6 +6,7 @@ import LoadingPage from "./LoadingPage";
 import { toast, Toaster } from "sonner";
 import { useReadByCategory, useReadProduct } from "../lib/supabase/CRUD";
 import useProductQueryStore from "../store/ProductQueryStore";
+import { Link } from "react-router-dom";
 
 const ProductGrid = () => {
   const searchedText = useProductQueryStore((s) => s.productQuery.search)
@@ -71,15 +72,15 @@ const ProductGrid = () => {
 
                     {/* ===================    description     ============================================================================= */}
                     <div className="p-1 h-52 text-center">
-                      <a
-                        href={`products/${item.pid}`}
+                      <Link
+                        to={`${item.pid}`}
                         className="text-sm md:text-md font-semibold"
                       >
                         <p>
                           {item.pname.slice(0, 50)}
                           <span>{item.pname.length > 50 ? "....." : ""}</span>
                         </p>
-                      </a>
+                      </Link>
                       <p className="text-gray-500">{item.category}</p>
                       <p className="font-bold text-red-500 bottom-50 right-5">
                         ${item.price}
@@ -100,11 +101,11 @@ const ProductGrid = () => {
                         >
                           Add to cart
                         </button>
-                        <a href={`products/${item.pid}`}>
+                        <Link to={`${item.pid}`}>
                           <button className="border w-fit py-1 px-7 text-lg bg-yellow-600 font-semibold">
                             View Detail
                           </button>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -137,15 +138,15 @@ const ProductGrid = () => {
 
                     {/* ===================    description     ============================================================================= */}
                     <div className="p-1 h-52 text-center">
-                      <a
-                        href={`products/${item.pid}`}
+                    <Link
+                        to={`${item.pid}`}
                         className="text-sm md:text-md font-semibold"
                       >
                         <p>
                           {item.pname.slice(0, 50)}
                           <span>{item.pname.length > 50 ? "....." : ""}</span>
                         </p>
-                      </a>
+                      </Link>
                       <p className="text-gray-500">{item.category}</p>
                       <p className="font-bold text-red-500 bottom-50 right-5">
                         ${item.price}
@@ -166,11 +167,11 @@ const ProductGrid = () => {
                         >
                           Add to cart
                         </button>
-                        <a href={`products/${item.pid}`}>
+                        <Link to={`${item.pid}`}>
                           <button className="border w-fit py-1 px-7 text-lg bg-yellow-600 font-semibold">
                             View Detail
                           </button>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

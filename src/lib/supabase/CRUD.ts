@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import supabase from "./config";
+import ms from "ms";
 import { INewProduct } from "../../entities/Product";
 
 // ======== Read Product
@@ -10,7 +11,7 @@ const fetchProduct = async () => {
 export const useReadProduct = () => useQuery({
     queryKey: ['products'],
     queryFn: fetchProduct,
-    staleTime: 10000
+    staleTime: ms('24h')
 })
 // ==== Read Single Specific Product
 const fetchSingleProduct = async (productId: number) => {
@@ -20,7 +21,7 @@ const fetchSingleProduct = async (productId: number) => {
 export const useReadSingleProduct = (productId: number) => useQuery({
     queryKey: ['products', productId],
     queryFn: () => fetchSingleProduct(productId),
-    staleTime: 10000
+    staleTime: ms('24h')
 })
 
 // ========= Fetch Category
@@ -31,7 +32,7 @@ const fetchCate = async () => {
 export const useReadCate = () => useQuery({
     queryKey: ['allCategory'],
     queryFn: fetchCate,
-    staleTime: 10000
+    staleTime: ms('24h')
 })
 
 // ========= Read Product by category
@@ -44,7 +45,7 @@ const fetchByCategory = async (category?: string) => {
 export const useReadByCategory = (category: string) => useQuery({
     queryKey: ['category', category],
     queryFn: () => fetchByCategory(category),
-    staleTime: 10000
+    staleTime: ms('24h')
 })
 
 // ======= Delete
