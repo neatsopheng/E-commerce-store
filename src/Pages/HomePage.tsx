@@ -61,8 +61,10 @@ function Homepage() {
         modules={[Autoplay]}
         className="mySwiper max-w-[1400px] h-[568px] mt-4"
       >
-        {bg_img.map((b) => (
-          <SwiperSlide>
+        {bg_img.map((b, index) => (
+          <SwiperSlide
+            key={index}
+          >
             <div
               className=" max-w-[1400px] h-[568px] bg-teal-800
                 w-full m-auto py-0  relative "
@@ -117,8 +119,8 @@ function Homepage() {
       </h3>
       <div className="w-auto m-auto overflow-hidden relative my-10 ">
         <div className="animate-autoScroll flex justify-evenly w-scrollWidth border-y-8 bg-gray-100">
-          {brandLogo.map((b) => (
-            <div className=" w-auto h-auto py-20 px-20 ">
+          {brandLogo.map((b, index) => (
+            <div key={index} className=" w-auto h-auto py-20 px-20 ">
               <img src={b} className=" h-[130px] w-[160px]  object-center" />
             </div>
           ))}
