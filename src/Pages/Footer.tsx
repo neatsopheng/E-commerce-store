@@ -2,11 +2,11 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-800 text-white py-6">
-      <div className="container  mx-auto flex flex-col md:flex-row gap-10 md:gap-0 justify-between items-center">
-        <div className="flex md:flex-row flex-col items-center space-x-4">
+    <footer className="bg-gray-800 w-screen text-white py-6">
+      <div className="container  mx-auto flex flex-col md:flex-row gap-5 md:gap-0 justify-between items-start md:items-center px-10">
+        <div className="flex md:flex-row flex-col items-center gap-5">
           <span className="text-lg font-semibold">Suphengmarket</span>
-          <nav className="space-x-4">
+          <nav className=" gap-2 flex flex-col md:flex-row">
             <a href="#" className="hover:underline">About</a>
             <a href="#" className="hover:underline">Services</a>
             <a href="#" className="hover:underline">Contact</a>

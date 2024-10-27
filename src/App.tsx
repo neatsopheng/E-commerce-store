@@ -3,6 +3,7 @@ import Footer from "./Pages/Footer";
 import ProductGrid from "./Pages/ProductGrid";
 import Sidebar from "./Pages/Sidebar";
 import NavbarOne from "./Pages/Navbar/NavbarOne";
+import { Toaster } from "sonner";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <main className="md:flex">
         <Sidebar />
         <ProductGrid />
+        <Toaster />
       </main>
 
       <footer>

@@ -1,6 +1,6 @@
 import { CiEdit } from "react-icons/ci";
 import { FaTrash } from "react-icons/fa";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LuEye } from "react-icons/lu";
 import { Link } from "react-router-dom";
@@ -136,7 +136,6 @@ const AdminProduct = () => {
             )}
           </div>
 
-          <ToastContainer />
         </div>
       )}
     </>
