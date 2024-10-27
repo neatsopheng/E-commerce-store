@@ -50,12 +50,12 @@ const CartView = ({ setShowCartView, showCart }: Prop) => {
         onClick={() => setShowCartView()}
         className={`${
           showCart ? "visible opacity-100" : "invisible opacity-0"
-        } absolute w-full top-0 left-0 backdrop-blur-none backdrop-brightness-75  h-screen transition duration-75`}
+        } absolute w-full top-[-10px] left-0 backdrop-blur-none backdrop-brightness-75  h-[110vh] transition duration-75`}
       ></div>
 
       <div
-        className={`fixed right-0 z-20  w-full md:w-[30rem] h-screen bg-[#f5eec2] text-white
-        overflow-y-scroll no-scrollbar
+        className={`fixed right-0 z-20  w-full md:w-[30rem] h-[90vh] md:h-screen bg-[#f5eec2] text-white
+        overflow-y-scroll no-scrollbar shadow-2xl
         ${
           showCart ? "visible opacity-100" : "invisible opacity-0"
         }  top-0 transition-all ease-in duration-200`}
